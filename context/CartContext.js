@@ -19,7 +19,7 @@ const addToCart = (vendorId, item) => {
         quantity: vendorItems[existingIndex].quantity + item.quantity,
       };
 
-      // ❗ Remove item if quantity is 0 or less
+      // Remove item if quantity is 0 or less
       if (updatedItem.quantity <= 0) {
         updatedVendorItems = vendorItems.filter((_, i) => i !== existingIndex);
       } else {
@@ -36,7 +36,7 @@ const addToCart = (vendorId, item) => {
       [vendorId]: updatedVendorItems,
     };
 
-    // ❗ Clean up vendor if no items left
+    // Clean up vendor if no items left
     if (updatedVendorItems.length === 0) {
       delete newCart[vendorId];
     }

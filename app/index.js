@@ -14,7 +14,7 @@ export default function Splash() {
     if (fontsLoaded) {
       const timeout = setTimeout(() => {
         router.replace('/welcome');
-      }, 2500);
+      }, 4500);
       return () => clearTimeout(timeout);
     }
   }, [fontsLoaded]);

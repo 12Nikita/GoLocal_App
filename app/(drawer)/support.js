@@ -16,22 +16,22 @@ export default function Support() {
   const [showAllOrders, setShowAllOrders] = useState(false);
   const [showAllVendors, setShowAllVendors] = useState(false);
 
-  // Use real data if available, else fallback
+  // will use real data when available
   const orderHistory = [
     { id: "1234", summary: "2 items from Green Grocery" },
     { id: "1250", summary: "1 item from Sharma Snacks" },
     { id: "1265", summary: "3 items from Raj Dairy" },
     { id: "1278", summary: "5 items from Fruit Cart" },
-  ]; // Replace with context or API
+  ]; //will Replace with context or API
 
-  const favoriteVendorIds = ["vendor1", "vendor2", "vendor3"]; // Replace with context
+  const favoriteVendorIds = ["vendor1", "vendor2", "vendor3"]; 
   const favoriteVendors = mockVendors.filter((v) => favoriteVendorIds.includes(v.id));
 
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>Support</Text>
 
-      {/* Search */}
+      {/* The Search Bar */}
       <TextInput
         placeholder="What do you want help with?"
         style={styles.searchInput}

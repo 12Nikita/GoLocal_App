@@ -125,7 +125,7 @@ export default function VendorDetail() {
                 <TouchableOpacity
                   style={styles.goToCartBtn}
                   onPress={() => {
-                    setActiveItemId(null); // ✅ collapse before navigating
+                    setActiveItemId(null); // collapse before navigating
                     router.push("/(drawer)/cart");
                   }}
                 >

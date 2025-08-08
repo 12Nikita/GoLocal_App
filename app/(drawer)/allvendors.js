@@ -1,5 +1,3 @@
-// app/allvendors.js
-
 import React from "react";
 import {
   View,

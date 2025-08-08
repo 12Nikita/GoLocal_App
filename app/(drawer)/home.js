@@ -58,50 +58,47 @@ export default function Home() {
   const flatListRef = useRef(null);
   const mapRef = useRef(null);
   const navigation = useNavigation();
+useEffect(() => {
+  (async () => {
+    // Skip permission and location, used fixed location
+    const fixedLat = 28.6315;  // Connaught Place Latitude
+    const fixedLon = 77.2167;  // Connaught Place Longitude
 
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") return;
+    setRegion({
+      latitude: fixedLat,
+      longitude: fixedLon,
+      latitudeDelta: 0.015,
+      longitudeDelta: 0.015,
+    });
 
-      let loc = await Location.getCurrentPositionAsync({});
-      const userLat = loc.coords.latitude;
-      const userLon = loc.coords.longitude;
+    const coordsList = generateNearbyCoords(fixedLat, fixedLon, baseVendors.length);
+    const updatedVendors = baseVendors.map((vendor, i) => ({
+      ...vendor,
+      coords: coordsList[i],
+    }));
 
-      setRegion({
-        latitude: userLat,
-        longitude: userLon,
-        latitudeDelta: 0.015,
-        longitudeDelta: 0.015,
-      });
+    setVendors(updatedVendors);
 
-      const coordsList = generateNearbyCoords(userLat, userLon, baseVendors.length);
-      const updatedVendors = baseVendors.map((vendor, i) => ({
-        ...vendor,
-        coords: coordsList[i],
-      }));
+    setTimeout(() => {
+      if (mapRef.current) {
+        mapRef.current.fitToCoordinates(
+          [{ latitude: fixedLat, longitude: fixedLon }, ...coordsList],
+          {
+            edgePadding: { top: 80, right: 80, bottom: 80, left: 80 },
+            animated: true,
+          }
+        );
+      }
+    }, 6000);
+  })();
 
-      setVendors(updatedVendors);
+  const interval = setInterval(() => {
+    setAdIndex((prev) => (prev + 1) % ads.length);
+  }, 3000);
 
-      setTimeout(() => {
-        if (mapRef.current) {
-          mapRef.current.fitToCoordinates(
-            [{ latitude: userLat, longitude: userLon }, ...coordsList],
-            {
-              edgePadding: { top: 80, right: 80, bottom: 80, left: 80 },
-              animated: true,
-            }
-          );
-        }
-      }, 1000);
-    })();
+  return () => clearInterval(interval);
+}, []);
 
-    const interval = setInterval(() => {
-      setAdIndex((prev) => (prev + 1) % ads.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const filteredVendors = selectedCategory
     ? vendors.filter((v) => v.type === selectedCategory)
@@ -344,7 +341,7 @@ export default function Home() {
       style={styles.optionBox}
       onPress={() => {
         if (opt === "Customer Service") {
-          router.push("/(drawer)/support"); // Navigate to Support screen
+          router.push("/(drawer)/support"); // This will Navigate to Support screen
         } else {
        
           alert(`${opt} coming soon...`);

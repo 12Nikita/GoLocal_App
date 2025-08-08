@@ -5,7 +5,7 @@ import { useRouter } from "expo-router";
 export default function EditProfile() {
   const router = useRouter();
 
-  // Temp local state — replace with global store later
+  // Temp local state — will replace with global store later
   const [name, setName] = useState("xyz");
   const [phone, setPhone] = useState("+91 9876543xyz");
   const [email, setEmail] = useState("xyz@example.com");
@@ -13,7 +13,7 @@ export default function EditProfile() {
   const handleSave = () => {
    
     Alert.alert("Profile Updated", "Your changes have been saved.");
-    router.back(); // Go back to profile page
+    router.back(); // to Go back to profile page
   };
 
   return (

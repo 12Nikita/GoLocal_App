@@ -81,14 +81,14 @@ export default function Profile() {
 
       <Text style={styles.sectionHeader}>Recent Orders</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {/* Replace with real order cards */}
+        {/* will be Replaced with real order cards */}
         <View style={styles.card}><Text>Order 1</Text></View>
         <View style={styles.card}><Text>Order 2</Text></View>
       </ScrollView>
 
       <Text style={styles.sectionHeader}>Favorite Vendors</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {/* Replace with real vendor cards */}
+        {/* will be Replaced with real vendor cards */}
         <View style={styles.card}><Text>Vendor A</Text></View>
         <View style={styles.card}><Text>Vendor B</Text></View>
       </ScrollView>

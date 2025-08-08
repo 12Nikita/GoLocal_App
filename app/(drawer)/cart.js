@@ -13,7 +13,7 @@ import { useCart } from "../../context/CartContext";
 
 export default function CartPage() {
   const [address, setAddress] = useState("Add delivery address");
-  const [showCoupons, setShowCoupons] = useState(false); // for dropdown toggle
+  const [showCoupons, setShowCoupons] = useState(false); 
 
   const { cartItems, addToCart } = useCart();
   const [promoCode, setPromoCode] = useState("");
@@ -139,7 +139,7 @@ export default function CartPage() {
                     </TouchableOpacity>
                   </View>
 
-                  {/* Dustbin below controls */}
+             
                   <TouchableOpacity
                     onPress={() => {
                       addToCart(vendorId, {
